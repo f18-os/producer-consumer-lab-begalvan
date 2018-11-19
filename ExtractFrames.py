@@ -26,22 +26,25 @@ class ExtractingThread(Thread):
       #global queue
       count = 0
 
-# open the video clip
-vidcap = cv2.VideoCapture(clipFileName)
+      #condition acquired
+      condition.acquire()
 
-# create the output directory if it doesn't exist
-if not os.path.exists(outputDir):
-  print("Output directory {} didn't exist, creating".format(outputDir))
-  os.makedirs(outputDir)
+      # open the video clip
+      vidcap = cv2.VideoCapture(clipFileName)
 
-# read one frame
-success,image = vidcap.read()
+      # create the output directory if it doesn't exist
+      if not os.path.exists(outputDir):
+        print("Output directory {} didn't exist, creating".format(outputDir))
+        os.makedirs(outputDir)
 
-print("Reading frame {} {} ".format(count, success))
-while success:
+      # read one frame
+      success,image = vidcap.read()
 
-  # write the current frame out as a jpeg image
-  cv2.imwrite("{}/frame_{:04d}.jpg".format(outputDir, count), image)   
-  success,image = vidcap.read()
-  print('Reading frame {}'.format(count))
-  count += 1
+      print("Reading frame {} {} ".format(count, success))
+      while success:
+
+        # write the current frame out as a jpeg image
+        cv2.imwrite("{}/frame_{:04d}.jpg".format(outputDir, count), image)   
+        success,image = vidcap.read()
+        print('Reading frame {}'.format(count))
+        count += 1
