@@ -39,3 +39,19 @@ class ProducerThread(Thread):
 class ConsumerThread(Thread):
     def run(self):
         global queue_list
+        while True:
+            condition.acquire()
+            if not queue_list:
+                print ("Consumer waiting") #consumer waits for producer to add frames to queue
+                condition.wait()
+                print ("Producer added to queue_list")
+
+            popped = queue_list.pop(0) #consumer removes data from queue
+            print ("Popped: " + str(popped))
+            condition.notify()
+            condition.release()
+            time.sleep(random.random())  
+
+#starting producer/consumer threads
+ProducerThread().start()
+ConsumerThread().start()  
