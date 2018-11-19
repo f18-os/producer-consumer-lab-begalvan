@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 
 import cv2
+import os
+from threading import Thread, Lock
 import time
+import random
+from threading import Condition
+import threading
 
 # globals
 outputDir    = 'frames'
