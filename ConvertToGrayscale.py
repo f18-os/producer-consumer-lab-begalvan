@@ -13,7 +13,8 @@ outputDir    = 'frames'
 
 condition = Condition()
 
-class GrayscaleConvertThread(Thread):
+#mod original file, create class
+class GrayscaleConvertThread(Thread): 
     def run(self):
 
         # Condition acquired
