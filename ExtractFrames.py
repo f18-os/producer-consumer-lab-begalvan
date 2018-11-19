@@ -2,11 +2,29 @@
 
 import cv2
 import os
+from threading import Thread, Lock
+import time
+import random
+from threading import Condition
+import threading
+
+#queue is empty
+queue = []
+
 # globals
 outputDir    = 'frames'
 clipFileName = 'clip.mp4'
 # initialize frame count
-count = 0
+
+lock = Lock()
+MAX_BOUND = 10 #max frames
+condition = Condition()
+
+#class created
+class ExtractingThread(Thread):
+  def run(self):
+      #global queue
+      count = 0
 
 # open the video clip
 vidcap = cv2.VideoCapture(clipFileName)
