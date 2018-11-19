@@ -23,3 +23,8 @@ class ProducerThread(Thread):
                 print ("Producer waiting") #producer waits for queue to be emptied
                 condition.wait()
                 print ("Consumer notified the producer")
+
+            #threads start to extract-> convert-> display
+            ExtractingThread().start()
+            GrayscaleConvertThread().start()
+            DisplayThread().start()
