@@ -1,12 +1,14 @@
 # Producer Consumer Lab
 
-For this lab you will implement a trivial producer-consumer system using
-python threads where all coordination is managed by counting and binary
-semaphores for a system of two producers and two consumers. The producers and
-consumers will form a simple rendering pipeline using multiple threads. One
-thread will read frames from a file, a second thread will take those frames
-and convert them to grayscale, and the third thread will display those
-frames. The threads will run concurrently.
+Implementation of a trivial producer-consumer system using python threads.
+One thread reads frames from a file, a second thread takes those frames and converts them to grayscale, and the third thread will display those frames. The threads run concurrently.
+There is one main producer and one consumer.
+The main producer MainThread.py calls extract, convert and diplays threads. The main producer keeps count of frames. Frames folder is used for lab.
+
+
+To run:
+python3 MainThread.py
+
 
 ## File List
 ### ExtractFrames.py
@@ -25,24 +27,10 @@ Loads a series of frames sequently from files with the names
 
 ### ExtractAndDisplay.py
 Loads a series of framss from a video contained in 'clip.mp4' and displays 
-them with a 42ms delay
+them with a 42ms delay. Original file provided, no modifications. File not used for lab.
 
-## Requirements
-* Extract frames from a video file, convert them to grayscale, and display
-them in sequence
-* You must have three functions
-  * One function to extract the frames
-  * One function to convert the frames to grayscale
-  * One function to display the frames at the original framerate (24fps)
-* The functions must each execute within their own python thread
-  * The threads will execute concurrently
-  * The order threads execute in may not be the same from run to run
-* Threads will need to signal that they have completed their task
-* Threads must process all frames of the video exactly once
-* Frames will be communicated between threads using producer/consumer idioms
-  * Producer/consumer quesues will be bounded at ten frames
-
-Note: You may have ancillary objects and method in order to make you're code easer to understand and implement.
+## MainThread.py
+* Main producer. Calls extract, convert and display threads (producers). Keeps track of frame count.
 
 
 
