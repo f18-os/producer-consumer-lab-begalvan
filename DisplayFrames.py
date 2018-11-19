@@ -12,7 +12,7 @@ import threading
 outputDir    = 'frames'
 frameDelay   = 42       # the answer to everything
 
-condition = Codition()
+condition = Condition()
 
 #modified original, create class
 class DisplayThread(Thread):
