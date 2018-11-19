@@ -61,5 +61,5 @@ class DisplayThread(Thread):
             # Read the next frame file
             frame = cv2.imread(frameFileName)
 
-# make sure we cleanup the windows, otherwise we might end up with a mess
-cv2.destroyAllWindows()
+        # make sure we cleanup the windows, otherwise we might end up with a mess
+        cv2.destroyAllWindows()
