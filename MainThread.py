@@ -16,3 +16,10 @@ class ProducerThread(Thread):
     def run(self):
         global queue_list
         count = 0
+
+        while True:
+            condition.acquire()
+            if len(queue_list) == MAX_BOUND: #max number of frames in queue
+                print ("Producer waiting") #producer waits for queue to be emptied
+                condition.wait()
+                print ("Consumer notified the producer")
