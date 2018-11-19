@@ -13,34 +13,40 @@ outputDir    = 'frames'
 
 condition = Condition()
 
-# initialize frame count
-count = 0
+class GrayscaleConvertThread(Thread):
+    def run(self):
 
-# get the next frame file name
-inFileName = "{}/frame_{:04d}.jpg".format(outputDir, count)
+        # Condition acquired
+        condition.acquire()
 
-# load the next file
-inputFrame = cv2.imread(inFileName, cv2.IMREAD_COLOR)
+        # initialize frame count
+        count = 0
 
-while inputFrame is not None:
-    print("Converting frame {}".format(count))
+        # get the next frame file name
+        inFileName = "{}/frame_{:04d}.jpg".format(outputDir, count)
 
-    # convert the image to grayscale
-    grayscaleFrame = cv2.cvtColor(inputFrame, cv2.COLOR_BGR2GRAY)
+        # load the next file
+        inputFrame = cv2.imread(inFileName, cv2.IMREAD_COLOR)
+
+        while inputFrame is not None:
+            print("Converting frame {}".format(count))
+
+            # convert the image to grayscale
+            grayscaleFrame = cv2.cvtColor(inputFrame, cv2.COLOR_BGR2GRAY)
     
-    # generate output file name
-    outFileName = "{}/grayscale_{:04d}.jpg".format(outputDir, count)
+            # generate output file name
+            outFileName = "{}/grayscale_{:04d}.jpg".format(outputDir, count)
 
-    # write output file
-    cv2.imwrite(outFileName, grayscaleFrame)
+            # write output file
+            cv2.imwrite(outFileName, grayscaleFrame)
 
-    count += 1
+            count += 1
 
-    # generate input file name for the next frame
-    inFileName = "{}/frame_{:04d}.jpg".format(outputDir, count)
+            # generate input file name for the next frame
+            inFileName = "{}/frame_{:04d}.jpg".format(outputDir, count)
 
-    # load the next frame
-    inputFrame = cv2.imread(inFileName, cv2.IMREAD_COLOR)
+            # load the next frame
+            inputFrame = cv2.imread(inFileName, cv2.IMREAD_COLOR)
 
     
     
