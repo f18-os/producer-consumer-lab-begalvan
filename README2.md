@@ -3,10 +3,11 @@
 Implementation of a trivial producer-consumer system using python threads.
 One thread reads frames from a file, a second thread takes those frames and converts them to grayscale, and the third thread will display those frames. The threads run concurrently.
 There is one main producer and one consumer.
-The main producer MainThread.py calls extract, convert and diplays threads. The main producer keeps count of frames. Frames folder is used for lab.
-
+The main producer MainThread.py calls extract, convert and diplays threads. The main producer keeps count of frames. Frames folder is needed to run the lab.
+If frames folder is missing run MainThread twice.
 
 To run:
+
 python3 MainThread.py
 
 
