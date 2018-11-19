@@ -11,3 +11,8 @@ from DisplayFrames import *
 queue_list = [] #empty queue
 MAX_BOUND = 10  #max frames
 condition = Condition()
+
+class ProducerThread(Thread):
+    def run(self):
+        global queue_list
+        count = 0
